@@ -1,37 +1,66 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="slunaSVI.Views.ProductView"
-             Title="ProductView">
-    <VerticalStackLayout>
-        <VerticalStackLayout Padding="10" Spacing="15">
-            <Label Text="Product CRUD" FontSize="32" HorizontalOptions="Center" />
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+            x:Class="slunaSVI.Views.ProductView"  
+            Title="ProductView">  
+   <VerticalStackLayout>  
+       <VerticalStackLayout Padding="10" Spacing="15">  
+           <Label Text="Product CRUD" FontSize="32" HorizontalOptions="Center" />  
 
-            <!-- Sección de formulario -->
-            <Entry x:Name="ProductNameEntry" Placeholder="Nombre del producto" />
-            <Entry x:Name="ProductDescriptionEntry" Placeholder="Descripción" />
-            <Entry x:Name="UnitPriceEntry" Placeholder="Precio unitario" Keyboard="Numeric" />
-            <Button Text="Guardar" Clicked="OnSaveClicked" BackgroundColor="#b19cd9" TextColor="Black" />
+           <!-- Sección de formulario -->  
+           <Entry x:Name="ProductNameEntry" Placeholder="Nombre del producto" />  
+           <Entry x:Name="ProductDescriptionEntry" Placeholder="Descripción" />  
+           <Entry x:Name="UnitPriceEntry" Placeholder="Precio unitario" Keyboard="Numeric" />  
+           <Grid ColumnDefinitions="*,*" Padding="0,0,0,0" Margin="0,0,0,0">  
+               <Button Text="Limpiar"  
+                       Grid.Column="0"  
+                       Clicked="OnClearClicked"  
+                       BackgroundColor="#e57373"
+                       Margin="10,0,0,0"
+                       TextColor="White"  
+                       HorizontalOptions="Fill" />  
+               <Button Text="Guardar"  
+                       Grid.Column="1"  
+                       Clicked="OnSaveClicked"  
+                       BackgroundColor="#b19cd9"
+                       Margin="10,0,0,0"
+                       TextColor="Black"  
+                       HorizontalOptions="Fill" />  
+           </Grid>  
 
-            <!-- Sección de lista -->
-            <Label Text="Lista de productos" FontAttributes="Bold" Margin="0,20,0,10" />
+           <!-- Sección de lista -->  
+           <Label Text="Lista de productos" FontAttributes="Bold" Margin="0,20,0,10" />  
 
-            <CollectionView x:Name="ProductsCollectionView" SelectionMode="Single" SelectionChanged="OnProductSelected">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="5" ColumnDefinitions="*,Auto" VerticalOptions="Center">
-                            <Label Text="{Binding ProductName}" FontAttributes="Bold" Grid.Column="0" VerticalOptions="Center" />
-                            <Button Text="Eliminar"
-                                    Grid.Column="1"
-                                    HorizontalOptions="End"
-                                    BackgroundColor="#b19cd9"
-                                    TextColor="Black"
-                                    CommandParameter="{Binding Id}"
-                                    Clicked="OnDeleteClicked" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-    </VerticalStackLayout>
+           <CollectionView x:Name="ProductsCollectionView" SelectionMode="Single" SelectionChanged="OnProductSelected">  
+               <CollectionView.ItemTemplate>  
+                   <DataTemplate>  
+                       <Grid Padding="5"  
+                           ColumnDefinitions="2*,2*,2*,Auto"  
+                           VerticalOptions="Center">  
+                           <Label Text="{Binding ProductName}"   
+                              FontAttributes="Bold"   
+                              Grid.Column="0"   
+                              VerticalOptions="Center" />  
+
+                           <Label Text="{Binding ProductDescription}"   
+                              Grid.Column="1"   
+                              VerticalOptions="Center" />  
+
+                           <Label Text="{Binding UnitPrice, StringFormat='Precio: ${0:F2}'}"   
+                              Grid.Column="2"   
+                              VerticalOptions="Center" />  
+
+                           <Button Text="Eliminar"  
+                               Grid.Column="3"  
+                               HorizontalOptions="End"  
+                               BackgroundColor="#b19cd9"  
+                               TextColor="Black"  
+                               CommandParameter="{Binding Id}"  
+                               Clicked="OnDeleteClicked" />  
+                       </Grid>  
+                   </DataTemplate>  
+               </CollectionView.ItemTemplate>  
+           </CollectionView>  
+       </VerticalStackLayout>  
+   </VerticalStackLayout>  
 </ContentPage>

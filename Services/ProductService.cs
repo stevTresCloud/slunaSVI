@@ -11,7 +11,7 @@ namespace slunaSVI.Services
     public class ProductService
     {
         private readonly HttpClient _httpClient;
-        public const string ProductServiceUrl = "http://localhost:8085/api/products";
+        public const string ProductServiceUrl = "http://10.2.7.203:8085/api/products";
 
         public ProductService()
         {
